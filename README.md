@@ -2,7 +2,7 @@
 
 # laravel-49147
 > Curso de Laravel |  
-> Lunes y Miéwrcoles 20hs (Arg) |  
+> Lunes y Miércoles 20hs (Arg) |  
 > Código: 49147 |  
 > sensei: Marcos Pinardi |
 
