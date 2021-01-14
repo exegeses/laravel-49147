@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get( 'peticion', proceso );
+Route::get('/prueba1', function () {
+    return 'primera petición procesada';
+});
+Route::get( '/prueba2', function (){
+    return view('primera');
+} );
+Route::get( '/prueba3', function(){
+    $nombre = 'marcos';
+    $numero = 15;
+    return view('segunda',
+                [
+                    'nombre'=>$nombre,
+                    'numero'=>$numero
+                ]
+            );
+});
