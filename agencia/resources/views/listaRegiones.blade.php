@@ -10,6 +10,13 @@
     <main class="container">
         <h1>Listado de regiones</h1>
 
+        <div class="list-group col-4">
+        @foreach( $regiones as $region )
+            <span class="list-group-item list-group-item-action">
+                {{ $region->regID }} - {{ $region->regNombre }}
+            </span>
+        @endforeach
+        </div>
 
     </main>
 </body>
