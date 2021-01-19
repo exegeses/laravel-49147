@@ -71,3 +71,16 @@ Route::get('/adminRegiones', function(){
                     [ 'regiones'=>$regiones ]
             );
 });
+########################################
+### CRUD DE DESTINOS
+Route::get('/adminDestinos', function(){
+    // Obtenemos listado de destinos
+    $destinos=DB::select(
+                    'SELECT destID,destNombre,destPrecio
+                            FROM destinos'
+                  );
+    // Retornamos vista pasando datos
+    return view('adminDestinos',
+                    ['destinos'=>$destinos]
+            );
+});
