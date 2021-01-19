@@ -49,3 +49,25 @@ Route::get('/inicio', function (){
 });
 */
 Route::view('/inicio', 'inicio');
+
+/*
+ *  raw SQL
+ *  DB::select();
+ *  DB::insert();
+ *  DB::update();
+ *  BD::delete();
+ * */
+
+
+########################################
+### CRUD DE REGIONES
+Route::get('/adminRegiones', function(){
+    //obtenemos listado de regiones
+    $regiones = DB::select(
+                        'SELECT regID, regNombre FROM regiones'
+                );
+    //retornamos vista pasando datos
+    return view('adminRegiones',
+                    [ 'regiones'=>$regiones ]
+            );
+});
