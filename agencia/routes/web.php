@@ -63,24 +63,61 @@ Route::view('/inicio', 'inicio');
 ### CRUD DE REGIONES
 Route::get('/adminRegiones', function(){
     //obtenemos listado de regiones
+    /*
     $regiones = DB::select(
                         'SELECT regID, regNombre FROM regiones'
                 );
+    */
+    $regiones = DB::table('regiones')->get();
+
     //retornamos vista pasando datos
     return view('adminRegiones',
-                    [ 'regiones'=>$regiones ]
-            );
+        [ 'regiones'=>$regiones ]
+    );
+});
+Route::get('/agregarRegion', function(){
+    return view('agregarRegion');
+});
+Route::post('/agregarRegion', function(){
+    //capturar dato enviado por el form
+    $regNombre = $_POST['regNombre'];
+    //dar alta
+    /*DB::insert(
+            'INSERT INTO regiones
+                         ( regNombre )
+                  VALUES ( :regNombre )',
+                  [ $regNombre ]
+        );
+    */
+    DB::table('regiones')->insert( [ 'regNombre'=>$regNombre ] );
+    //redirección a petición /adminregiones
+    return redirect('/adminRegiones')
+        ->with('mensaje', 'Región: '.$regNombre.' agregada correctamente');
 });
 ########################################
 ### CRUD DE DESTINOS
 Route::get('/adminDestinos', function(){
     // Obtenemos listado de destinos
-    $destinos=DB::select(
-                    'SELECT destID,destNombre,destPrecio
-                            FROM destinos'
-                  );
+    /* $destinos=DB::select(
+                     'SELECT r.regNombre, d.destNombre, d.destPrecio
+                         FROM destinos as d
+                           INNER JOIN regiones AS r
+                               ON d.regID = r.regID'
+                   );
+    */
+    /*
+     $destinos = DB::select(
+                        'SELECT d.destNombre, d.regId, d.destPrecio,
+                                r.regId, r.regNombre
+                            FROM destinos d, regiones r
+                            WHERE d.regId=r.regId'
+                    );
+    */
+    $destinos = DB::table('destinos as d')
+        ->join('regiones as r', 'd.regID', '=', 'r.regID')
+        ->get();
     // Retornamos vista pasando datos
     return view('adminDestinos',
-                    ['destinos'=>$destinos]
-            );
+        ['destinos'=>$destinos]
+    );
 });

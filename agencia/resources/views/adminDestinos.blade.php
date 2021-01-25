@@ -20,12 +20,12 @@
                 </a>
             </th>
         </tr>
-        </thead>
+        </thead>git
         <tbody>
         @foreach ( $destinos as $destino )
             <tr>
                 <td>{{ $destino->destNombre }}</td>
-                <td> regNombre </td>
+                <td>{{ $destino->regNombre }}</td>
                 <td>${{ $destino->destPrecio }}</td>
                 <td>
                     <a href="/modificarDestino/id" class="btn btn-outline-secondary">
@@ -38,7 +38,7 @@
                     </a>
                 </td>
             </tr>
-            @endforeach
+        @endforeach
         </tbody>
     </table>
 @endsection
