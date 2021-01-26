@@ -159,3 +159,15 @@ Route::post('/agregarDestino', function(){
                         ]
                     );
 });
+Route::get('/modificarRegion/{regID}', function ($regID){
+    // obtenemos datos de la región filtrada por su id
+    $region = DB::table('regiones')
+                    ->where('regID', $regID)
+                    ->first();
+    //retornamos vista del form pasando datos
+    return view('modificarRegion',
+                    [
+                        'region'=>$region
+                    ]
+                );
+});
