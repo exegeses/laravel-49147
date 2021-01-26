@@ -20,7 +20,7 @@
                 </a>
             </th>
         </tr>
-        </thead>git
+        </thead>
         <tbody>
         @foreach ( $destinos as $destino )
             <tr>

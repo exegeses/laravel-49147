@@ -121,3 +121,13 @@ Route::get('/adminDestinos', function(){
         ['destinos'=>$destinos]
     );
 });
+
+Route::get('/agregarDestino', function (){
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
+
+    //retornamos vista del form pasando regiones
+    return view('agregarDestino',
+                    [ 'regiones'=>$regiones ]
+            );
+});
