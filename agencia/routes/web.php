@@ -164,6 +164,7 @@ Route::get('/modificarRegion/{regID}', function ($regID){
     $region = DB::table('regiones')
                     ->where('regID', $regID)
                     ->first();
+
     //retornamos vista del form pasando datos
     return view('modificarRegion',
                     [
