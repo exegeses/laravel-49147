@@ -94,6 +94,47 @@ Route::post('/agregarRegion', function(){
     return redirect('/adminRegiones')
         ->with('mensaje', 'Región: '.$regNombre.' agregada correctamente');
 });
+
+Route::get('/modificarRegion/{regID}', function ($regID){
+    // obtenemos datos de la región filtrada por su id
+    $region = DB::table('regiones')
+        ->where('regID', $regID)
+        ->first();
+
+    //retornamos vista del form pasando datos
+    return view('modificarRegion',
+        [
+            'region'=>$region
+        ]
+    );
+});
+Route::post('/modificarRegion', function(){
+    //capturamos datos del form
+    $regID = $_POST['regID'];
+    $regNombre = $_POST['regNombre'];
+    //modificar
+    /* DB::update( 'UPDATE regiones
+                     SET regNombre = ?
+                     WHERE regID = ?', [ $regNombre, $regID ]);
+     */
+    DB::table('regiones')
+        ->where('regID', $regID)
+        ->update(
+            [
+                'regNombre'=>$regNombre
+            ]
+        );
+
+    //retornar con mensaje de ok
+    return redirect('/adminRegiones')
+        ->with(
+            [
+                'mensaje'=>'Región: '.$regNombre.' modificada correctamente.'
+            ]
+        );
+});
+
+
 ########################################
 ### CRUD DE DESTINOS
 Route::get('/adminDestinos', function(){
@@ -159,41 +200,15 @@ Route::post('/agregarDestino', function(){
                         ]
                     );
 });
-Route::get('/modificarRegion/{regID}', function ($regID){
-    // obtenemos datos de la región filtrada por su id
-    $region = DB::table('regiones')
-                    ->where('regID', $regID)
+Route::get('/modificarDestino/{destID}', function($destID){
+    //obtener datos de ese destino por su ID
+    $destino = DB::table('destinos')
+                    ->where('destID', $destID)
                     ->first();
-
-    //retornamos vista del form pasando datos
-    return view('modificarRegion',
-                    [
-                        'region'=>$region
-                    ]
-                );
-});
-Route::post('/modificarRegion', function(){
-    //capturamos datos del form
-    $regID = $_POST['regID'];
-    $regNombre = $_POST['regNombre'];
-    //modificar
-   /* DB::update( 'UPDATE regiones
-                    SET regNombre = ?
-                    WHERE regID = ?', [ $regNombre, $regID ]);
-    */
-    DB::table('regiones')
-                ->where('regID', $regID)
-                ->update(
-                    [
-                    'regNombre'=>$regNombre
-                    ]
-                );
-
-    //retornar con mensaje de ok
-    return redirect('/adminRegiones')
-        ->with(
-            [
-                'mensaje'=>'Región: '.$regNombre.' modificada correctamente.'
-            ]
-        );
+    //retornar veista del form +  pasar datos a la vista
+    return view('modificarDestino',
+                        [
+                            'destino'=>$destino
+                        ]
+            );
 });
