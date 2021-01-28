@@ -202,13 +202,17 @@ Route::post('/agregarDestino', function(){
 });
 Route::get('/modificarDestino/{destID}', function($destID){
     //obtener datos de ese destino por su ID
-    $destino = DB::table('destinos')
-                    ->where('destID', $destID)
-                    ->first();
+    $destino = DB::table('destinos as d')
+                        ->join('regiones as r', 'd.regID', '=', 'r.regID')
+                        ->where('destID', $destID)
+                        ->first();
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
     //retornar veista del form +  pasar datos a la vista
     return view('modificarDestino',
                         [
-                            'destino'=>$destino
+                            'destino'=>$destino,
+                            'regiones'=>$regiones
                         ]
             );
 });
