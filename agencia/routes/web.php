@@ -134,6 +134,18 @@ Route::post('/modificarRegion', function(){
         );
 });
 
+Route::get('/eliminarRegion/{regID}', function ($regID){
+    //obtenemos datos de una región por su id
+    $region = DB::table('regiones')
+                    ->where('regID', $regID)
+                    ->first();
+    // retornamos vista y la pasamos datos de la región
+    return view('eliminarRegion',
+                [
+                    'region'=>$region
+                ]
+        );
+});
 
 ########################################
 ### CRUD DE DESTINOS

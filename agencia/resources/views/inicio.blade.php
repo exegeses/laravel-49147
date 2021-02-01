@@ -1,13 +1,12 @@
 @extends('layouts.plantilla')
 
     @section('contenido')
-        <h1>Contenido de la página</h1>
+        <h1>tema</h1>
 
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusantium atque deleniti esse, exercitationem fuga illo
-            quia ratione suscipit ut voluptas!
-            Alias deleniti iure laboriosam similique.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet aut cumque dignissimos, ducimus earum enim exercitationem, id nam obcaecati perspiciatis quibusdam sapiente suscipit tempore, voluptate. A, accusantium delectus dolorum earum illo iure laborum modi nemo, officiis quam ratione rem sit tenetur ullam, unde ut!
         </p>
+
+        </div>
 
     @endsection
