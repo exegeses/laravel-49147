@@ -146,6 +146,21 @@ Route::get('/eliminarRegion/{regID}', function ($regID){
                 ]
         );
 });
+Route::post('/eliminarRegion', function(){
+    $regNombre = $_POST['regNombre'];
+    $regID = $_POST['regID'];
+    /**/
+
+    //borramos región
+    DB::table('regiones')
+            ->where('regID', $regID)
+            ->delete();
+
+    return redirect('/adminRegiones')
+                ->with(
+                    [ 'mensaje'=>'Región: '.$regNombre.' eliminada correctamente.' ]
+                );
+});
 
 ########################################
 ### CRUD DE DESTINOS
