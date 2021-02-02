@@ -149,7 +149,12 @@ Route::get('/eliminarRegion/{regID}', function ($regID){
 Route::post('/eliminarRegion', function(){
     $regNombre = $_POST['regNombre'];
     $regID = $_POST['regID'];
-    /**/
+    /*
+     * if( DB::table('destinos')->where('regID', $regID)->exists() ){
+     *      no se puede eliminar porque hay un destino con esta región
+     *      return redirect()->with();
+     * }
+     * */
 
     //borramos región
     DB::table('regiones')
