@@ -16,7 +16,7 @@ class MarcaController extends Controller
     {
         //obtenenos listado de marcas
         //$marcas = DB::table('marcas')->get();
-        $marcas = Marca::all();
+        $marcas = Marca::paginate(5);
         //retornamos vista pasandole los datos
         return view('adminMarcas',
                         [ 'marcas'=>$marcas ]
@@ -31,7 +31,8 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        //retornar vista del form para agregar marca
+        return view('agregarMarca');
     }
 
     /**
