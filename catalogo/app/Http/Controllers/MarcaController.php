@@ -14,8 +14,14 @@ class MarcaController extends Controller
      */
     public function index()
     {
+        //obtenenos listado de marcas
+        //$marcas = DB::table('marcas')->get();
         $marcas = Marca::all();
-        dd($marcas);
+        //retornamos vista pasandole los datos
+        return view('adminMarcas',
+                        [ 'marcas'=>$marcas ]
+                    );
+
     }
 
     /**
