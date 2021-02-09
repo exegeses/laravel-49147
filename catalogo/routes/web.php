@@ -23,3 +23,4 @@ use App\Http\Controllers\MarcaController;
 Route::get('/adminMarcas', [ MarcaController::class, 'index'  ] );
 
 
+
