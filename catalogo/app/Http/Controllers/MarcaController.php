@@ -89,7 +89,10 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        //
+        //obtenemos datos de una marca
+        $Marca = Marca::find($id);
+        //retornamos a la vista pasando datos
+
     }
 
     /**

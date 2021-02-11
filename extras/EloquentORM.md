@@ -22,3 +22,10 @@
 > created_at  y  updated_at
 
     public $timestaps = false;
+
+> Eloquent considera que el primaryKey
+> SIEMPRE se llama 'id'
+
+    protected $primaryKey = 'idMarca';
+
+
