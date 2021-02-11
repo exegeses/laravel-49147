@@ -57,10 +57,17 @@ class MarcaController extends Controller
                         'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 50 caractéres como máximo.'
                     ]
                 );
-        return 'pasó validación';
-        //guardar
-
-        //retornar petion + mensaje
+        // instanciamos, asignamos valores y guardar
+        $Marca = new Marca;
+        $Marca->mkNombre = $mkNombre;
+        $Marca->save();
+        //retornar petición + mensaje
+        return redirect('/adminMarcas')
+                ->with(
+                    [
+                    'mensaje'=>'Marca: '.$mkNombre.' agregada correctamente'
+                    ]
+                );
     }
 
     /**
