@@ -16,6 +16,7 @@ class MarcaController extends Controller
     {
         //obtenenos listado de marcas
         //$marcas = DB::table('marcas')->get();
+        //$marcas = Marca::all();
         $marcas = Marca::paginate(5);
         //retornamos vista pasandole los datos
         return view('adminMarcas',
@@ -43,7 +44,23 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$mkNombre = $_POST['mkNombre'];
+        $mkNombre = $request->mkNombre;
+        //validación
+        $request->validate(
+                    [
+                        'mkNombre'=>'required|min:2|max:50'
+                    ],
+                    [
+                        'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
+                        'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
+                        'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 50 caractéres como máximo.'
+                    ]
+                );
+        return 'pasó validación';
+        //guardar
+
+        //retornar petion + mensaje
     }
 
     /**
