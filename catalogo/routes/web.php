@@ -24,5 +24,5 @@ Route::get('/adminMarcas', [ MarcaController::class, 'index'  ] );
 Route::get('/agregarMarca', [ MarcaController::class, 'create' ] );
 Route::post('/agregarMarca', [ MarcaController::class, 'store' ]);
 Route::get('/modificarMarca/{id}', [ MarcaController::class, 'edit' ] );
-
+Route::put('/modificarMarca', [ MarcaController::class, 'update' ]);
 
