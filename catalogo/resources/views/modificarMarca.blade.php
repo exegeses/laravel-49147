@@ -8,6 +8,7 @@
 
             <form action="/modificarMarca" method="post">
             @csrf
+            @method('put')
                 <div class="form-group">
                     <label for="mkNombre">Nombre de la marca</label>
                     <input type="text" name="mkNombre"
