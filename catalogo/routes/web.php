@@ -26,3 +26,12 @@ Route::post('/agregarMarca', [ MarcaController::class, 'store' ]);
 Route::get('/modificarMarca/{id}', [ MarcaController::class, 'edit' ] );
 Route::put('/modificarMarca', [ MarcaController::class, 'update' ]);
 
+
+########################################################
+####### CRUD de categorias
+
+
+########################################################
+####### CRUD de productos
+use App\Http\Controllers\ProductoController;
+Route::get('/adminProductos', [ ProductoController::class, 'index' ]);
