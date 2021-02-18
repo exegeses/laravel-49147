@@ -36,6 +36,20 @@ class MarcaController extends Controller
         return view('agregarMarca');
     }
 
+    private function validarMarca(Request $request)
+    {
+        $request->validate(
+            [
+                'mkNombre'=>'required|min:2|max:50'
+            ],
+            [
+                'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
+                'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
+                'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 50 caractéres como máximo.'
+            ]
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,16 +61,7 @@ class MarcaController extends Controller
         //$mkNombre = $_POST['mkNombre'];
         $mkNombre = $request->mkNombre;
         //validación
-        $request->validate(
-                    [
-                        'mkNombre'=>'required|min:2|max:50'
-                    ],
-                    [
-                        'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
-                        'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
-                        'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 50 caractéres como máximo.'
-                    ]
-                );
+        $this->validarMarca($request);
         // instanciamos, asignamos valores y guardar
         $Marca = new Marca;
         $Marca->mkNombre = $mkNombre;
@@ -103,12 +108,26 @@ class MarcaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $mkNombre = $request->mkNombre;
+        //validamos
+        $this->validarMarca($request);
+        //obtenemos datos de la marca
+        $Marca = Marca::find($request->idMarca);
+        //asignamos
+        $Marca->mkNombre = $mkNombre;
+        //guardamos
+        $Marca->save();
+        //retornamos a redirección con mensaje
+        return redirect('/adminMarcas')
+            ->with(
+                [
+                    'mensaje'=>'Marca: '.$mkNombre.' modificada correctamente'
+                ]
+            );
     }
 
     /**
