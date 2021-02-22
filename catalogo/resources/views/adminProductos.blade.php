@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{ $producto->prdNombre }}</td>
                     <td>{{ $producto->relMarca->mkNombre }}</td>
-                    <td>categoria</td>
+                    <td>{{ $producto->relCategoria->catNombre }}</td>
                     <td>${{ $producto->prdPrecio }}</td>
                     <td>{{ $producto->prdPresentacion }}</td>
                     <td>
