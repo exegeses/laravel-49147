@@ -16,9 +16,10 @@ class Producto extends Model
     public function relMarca()
     {
         return $this->belongsTo(
-                        '\App\Models\Marca',
+                        Marca::class,
                      'idMarca',
                      'idMarca'
                 );
     }
+
 }
