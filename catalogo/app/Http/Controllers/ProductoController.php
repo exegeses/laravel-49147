@@ -45,7 +45,7 @@ class ProductoController extends Controller
                 );
     }
 
-    public function validarProducto(Request $request)
+    private function validarProducto(Request $request)
     {
         $request->validate(
             [
@@ -74,6 +74,26 @@ class ProductoController extends Controller
         );
     }
 
+    private function subirImagen(Request $request)
+    {
+        //si no enviaron archivo store()
+        $prdImagen = 'noDisponible.jpg';
+
+        //si enviaron archivo
+        if( $request->file('prdImagen') ){
+            //renombrar archivo
+            # time() . extension
+            $ext = $request->file('prdImagen')->extension();
+            $prdImagen = time().'.'.$ext;
+
+            //subir imagen
+            $request
+                ->file('prdImagen')
+                ->move( public_path('productos/'), $prdImagen );
+        }
+
+        return $prdImagen;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -83,9 +103,11 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //validar
-
-
+        //validación
+        $this->validarProducto($request);
+        //subir imagen *
+        $prdImagen = $this->subirImagen($request);
+        dd($prdImagen);
     }
 
     /**
