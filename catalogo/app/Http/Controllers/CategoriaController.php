@@ -108,7 +108,7 @@ class CategoriaController extends Controller
         //validamos
         $this->validarCategoria($request);
         //obtenemos datos de la categoría
-        $Categoria = Categoria::find($request->idMarca);
+        $Categoria = Categoria::find($request->idCategoria);
         //asignamos
         $Categoria->catNombre = $catNombre;
         //guardamos
