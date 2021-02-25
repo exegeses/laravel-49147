@@ -193,6 +193,15 @@ class ProductoController extends Controller
             ->with('mensaje', 'Producto: '. $request->prdNombre. ' modificado correctamente');
     }
 
+    public function confirmarBaja($id)
+    {
+        $Producto = Producto::with('relMarca', 'relCategoria')
+                        ->find($id);
+        return view('eliminarProducto',
+                    [ 'Producto'=>$Producto ]
+               );
+    }
+
     /**
      * Remove the specified resource from storage.
      *

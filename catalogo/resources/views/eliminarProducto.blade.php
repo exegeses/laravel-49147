@@ -11,7 +11,7 @@
             <div class="col text-danger align-self-center">
             <form action="/eliminarProducto" method="post">
 
-                <h2>Nombra del producto</h2>
+                <h2>Nombre del producto</h2>
                 Categoría: catNombre  <br>
                 Marca:  mkNombre <br>
                 Presentación: prdPresentacion <br>
